@@ -10,7 +10,7 @@
 		<param-value>/WEB-INF/spring/action-mybatis.xml</param-value>
 	</context-param>
 	
-	<!-- encodingFilter -->
+	<!-- encodingFilter --> 
 	 <filter>
 	  <filter-name>encodingFilter</filter-name>
 	  <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
