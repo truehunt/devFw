@@ -46,6 +46,7 @@
 	</beans:bean>
 	<beans:bean id="viewResolver" class="org.springframework.web.servlet.view.UrlBasedViewResolver">
 		<beans:property name="viewClass" value="org.springframework.web.servlet.view.tiles2.TilesView" />
+		<beans:property name="order" value="1"/>
 	</beans:bean>
 
 	<!-- 다중파일 업로드 -->

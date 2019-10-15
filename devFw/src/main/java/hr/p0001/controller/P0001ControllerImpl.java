@@ -41,6 +41,17 @@ public class P0001ControllerImpl implements P0001Controller {
 	P0001VO p0001VO;
 	
 	@Override
+	@RequestMapping(value = "/login.do", method = { RequestMethod.GET, RequestMethod.POST })
+	public ModelAndView login(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		String viewName = getViewName(request);
+		viewName = "/login/*";
+		request.setCharacterEncoding("utf-8");
+		//ModelAndView main = new ModelAndView("hr/p0001_init");
+		ModelAndView main = new ModelAndView(viewName);
+		return main;
+	}
+	
+	@Override
 	@RequestMapping(value = "/hr/p0001/searchInit.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public ModelAndView searchInit(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String viewName = getViewName(request);
@@ -108,7 +119,7 @@ public class P0001ControllerImpl implements P0001Controller {
 
 		String message;
 		ResponseEntity resEnt = null;
-		HttpHeaders responseHeaders = new HttpHeaders(); // Çì´õº¯°æ ½Ã »ç¿ë
+		HttpHeaders responseHeaders = new HttpHeaders(); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½
 		responseHeaders.add("Content-Type", "text/html; charset=utf-8");		
 		try {
 			p0001Service.updateMember(dataMap);
@@ -117,7 +128,7 @@ public class P0001ControllerImpl implements P0001Controller {
 			dispatch.forward(request, response);
 		} catch (Exception e) {
 			message = " <script>";
-			message += " alert('¿À·ù°¡ ¹ß»ýÇß½À´Ï´Ù. ´Ù½Ã ½ÃµµÇØ ÁÖ¼¼¿ä');";
+			message += " alert('ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ß»ï¿½ï¿½ß½ï¿½ï¿½Ï´ï¿½. ï¿½Ù½ï¿½ ï¿½Ãµï¿½ï¿½ï¿½ ï¿½Ö¼ï¿½ï¿½ï¿½');";
 			message += " location.href='" + request.getContextPath() + "/hm/p0001/searchInit.do'; ";
 			message += " </script>";
 			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -141,7 +152,7 @@ public class P0001ControllerImpl implements P0001Controller {
 
 		String message;
 		ResponseEntity resEnt = null;
-		HttpHeaders responseHeaders = new HttpHeaders(); // Çì´õº¯°æ ½Ã »ç¿ë
+		HttpHeaders responseHeaders = new HttpHeaders(); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½
 		responseHeaders.add("Content-Type", "text/html; charset=utf-8");		
 		try {
 			p0001Service.insertMember(dataMap);
@@ -150,7 +161,7 @@ public class P0001ControllerImpl implements P0001Controller {
 			dispatch.forward(request, response);
 		} catch (Exception e) {
 			message = " <script>";
-			message += " alert('¿À·ù°¡ ¹ß»ýÇß½À´Ï´Ù. ´Ù½Ã ½ÃµµÇØ ÁÖ¼¼¿ä');";
+			message += " alert('ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ß»ï¿½ï¿½ß½ï¿½ï¿½Ï´ï¿½. ï¿½Ù½ï¿½ ï¿½Ãµï¿½ï¿½ï¿½ ï¿½Ö¼ï¿½ï¿½ï¿½');";
 			message += " location.href='" + request.getContextPath() + "/hr/p0001/searchInit.do'; ";
 			message += " </script>";
 			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -164,7 +175,7 @@ public class P0001ControllerImpl implements P0001Controller {
 	public Map<String, Object> ajaxTest() {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("id", "hong");
-		map.put("name", "È«±æµ¿");
+		map.put("name", "È«ï¿½æµ¿");
 		return map;
 	}
 	private String getViewName(HttpServletRequest request) throws Exception {

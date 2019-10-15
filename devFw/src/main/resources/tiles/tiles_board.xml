@@ -3,6 +3,20 @@
 "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
 "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
 <tiles-definitions>
+
+	<!-- 로그인 화면 레이아웃 -->
+	<definition name=".login"  template="/WEB-INF/views/common/loginlayout.jsp">
+      <put-attribute name="title" value="" />
+      <put-attribute name="body" value="" />
+      <put-attribute name="footer" value="" />
+   </definition>
+   
+   <definition name="/login/*" extends=".login">
+      <put-attribute name="title" value="로그인" />
+      <put-attribute name="body" value="/WEB-INF/views/hr/login.jsp" />
+   </definition>
+
+	<!-- 로그인 화면 외 레이아웃 -->
    <definition name="baseLayout"  template="/WEB-INF/views/common/layout.jsp">
       <put-attribute name="title" value="" />
       <put-attribute name="header" value="/WEB-INF/views/common/header.jsp" />

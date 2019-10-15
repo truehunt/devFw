@@ -18,4 +18,5 @@ public interface P0001Controller {
 	
 	public ResponseEntity updateMember(HttpServletRequest request, HttpServletResponse response) throws Exception;
 	public ResponseEntity insertMember(HttpServletRequest request, HttpServletResponse response) throws Exception;
+	public ModelAndView login(HttpServletRequest request, HttpServletResponse response) throws Exception;
 }
