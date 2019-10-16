@@ -1,68 +1,49 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"  isELIgnored="false"
- %>
-<%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>    
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
- 
-<!DOCTYPE html>
+<%@ page language="java" contentType="text/html; charset=UTF-8"%>
+<%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
+<!doctype html>
 <html>
   <head>
-    <meta charset="UTF-8">
-    <style>
-      #container {
-        width: 100%;
-        margin: 0px auto;
-          text-align:center;
-        border: 0px solid #bcbcbc;
-      }
-      #header {
-        padding: 5px;
-        margin-bottom: 5px;
-        border: 0px solid #bcbcbc;
-         background-color: gray;
-      }
-      #sidebar-left {
-        width: 15%;
-        height:700px;
-        padding: 5px;
-        margin-right: 5px;
-        margin-bottom: 5px;
-        float: left;
-         background-color: gray;
-        border: 0px solid #bcbcbc;
-        font-size:10px;
-      }
-      #content {
-        width: 75%;
-        padding: 5px;
-        margin-right: 5px;
-        float: left;
-        border: 0px solid #bcbcbc;
-      }
-      #footer {
-        clear: both;
-        padding: 5px;
-        border: 0px solid #bcbcbc;
-         background-color: lightblue;
-      }
-      
-    </style>
-    <title><tiles:insertAttribute name="title" /></title>
+		<tiles:insertAttribute name="css" />
   </head>
-    <body>
-    <div id="container">
-      <div id="header">
-         <tiles:insertAttribute name="header"/>
+  <body id="page-top">
+	<tiles:insertAttribute name="header" />
+    <div id="wrapper">
+      <!-- Sidebar -->
+      <tiles:insertAttribute name="menu" />
+      <div id="content-wrapper">
+		<tiles:insertAttribute name="content" />
+        <!-- /.container-fluid -->
+        
+        <!-- Sticky Footer -->
+        <tiles:insertAttribute name="footer" />
       </div>
-      <div id="sidebar-left">
-          <tiles:insertAttribute name="side"/> 
-      </div>
-      <div id="content">
-          <tiles:insertAttribute name="body"/>
-      </div>
-      <div id="footer">
-          <tiles:insertAttribute name="footer"/>
+      <!-- /.content-wrapper -->
+    </div>
+    <!-- /#wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+      <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+          <div class="modal-footer">
+            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+            <a class="btn btn-primary" href="login.html">Logout</a>
+          </div>
+        </div>
       </div>
     </div>
+<tiles:insertAttribute name="js" />
   </body>
 </html>

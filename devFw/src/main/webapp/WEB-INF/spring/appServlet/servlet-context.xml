@@ -12,21 +12,22 @@
 	<!-- DispatcherServlet Context: defines this servlet's request-processing 
 		infrastructure -->
 
-	<!-- Enables the Spring MVC @Controller programming model -->
-	<annotation-driven />
-
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving 
 		up static resources in the ${webappRoot}/resources directory -->
-	<resources mapping="/resources/**" location="/resources/" />
+	<mvc:resources mapping="/resources/**" location="/WEB-INF/resources/assets/" />
+	
+	<!-- Enables the Spring MVC @Controller programming model -->
+	<mvc:annotation-driven />
+	<mvc:default-servlet-handler />
 
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources 
 		in the /WEB-INF/views directory -->
-	<!-- 
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"> 
-		<beans:property name="prefix" value="/WEB-INF/views/" /> 
-		<beans:property name="suffix" value=".jsp" /> 
+		<beans:property name="prefix" value="/WEB-INF/views" /> 
+		<beans:property name="suffix" value=".jsp" />
+		<beans:property name="order" value="2"/> 
 	</beans:bean>
--->
+	
   <context:component-scan	base-package="project, hr" />
   
   <beans:bean id="localeResolver" class="org.springframework.web.servlet.i18n.SessionLocaleResolver" >
