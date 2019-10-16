@@ -88,7 +88,7 @@
 <body >
 <div id="main">
 	
-	<jsp:include page="/views/common/jsp/sheetNavi.jsp" flush="true"/>
+	<jsp:include page="/WEB-INF/views/common/jsp/sheetNavi.jsp" flush="true"/>
 	<div id="title">기본 조회 / 저장 예제</div>
 	<div id="desc">
 		페이지 네비게이션을 통한 이동 방법을 확인해 본다.

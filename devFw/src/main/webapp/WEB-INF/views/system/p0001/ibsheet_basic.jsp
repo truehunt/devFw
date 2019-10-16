@@ -62,7 +62,7 @@
 			case "save": // 저장
 				//var tempStr = mySheet.GetSaveString();
 				//alert("서버로 전달되는 문자열 확인 :"+tempStr);
-				mySheet.DoSave("${contextPath}/system/p0001/saveData.do");
+				mySheet.DoSave("${contextPath}/system/p0001/insertData.do");
 				break;			
 			case "insert": //신규행 추가
 				var row = mySheet.DataInsert();

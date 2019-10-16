@@ -20,23 +20,23 @@ public class P0001DAOImpl implements P0001DAO {
 
 	@Override
 	public List<P0001VO> searchList(Map<String, Object> searchMap) throws DataAccessException {
-		List<P0001VO> list = sqlSession.selectList("hr.p0001.searchList", searchMap);
+		List<P0001VO> list = sqlSession.selectList("hr.system.p0001.searchList", searchMap);
 		return list;
 	}
 
 	@Override
 	public void insertData(Map<String, String> row) throws DataAccessException {
-		sqlSession.update("hr.s0001.insertData", row);
+		sqlSession.update("hr.system.p0001.insertData", row);
 	}
 
 	@Override
 	public void updateData(Map<String, String> row) throws DataAccessException {
-		sqlSession.update("hr.s0001.updateData", row);
+		sqlSession.update("hr.system.p0001.updateData", row);
 	}
 
 	@Override
 	public void deleteData(Map<String, String> row) throws DataAccessException {
-		sqlSession.update("hr.s0001.deleteData", row);
+		sqlSession.update("hr.system.p0001.deleteData", row);
 	}
 
 }

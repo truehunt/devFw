@@ -75,111 +75,52 @@ public class P0001ControllerImpl implements P0001Controller {
 	
 	@Override
 	@RequestMapping(value = "/system/p0001/searchList.do", method = { RequestMethod.GET, RequestMethod.POST })
-	public ModelAndView searchList(@RequestParam(value="p_id", required=false) String p_id, HttpServletRequest request, HttpServletResponse response) throws Exception {
-		request.setCharacterEncoding("utf-8");
-		Map<String, Object> searchMap = new HashMap<String, Object>();
-		searchMap.put("p_id", p_id);	 
-		
-		List list = p0001Service.searchList(searchMap);
-		
-		ModelAndView main = new ModelAndView("system/p0001_search");
-		main.addObject("searchList", list);
-		return main;
-	}
-	
-	@Override
-	@RequestMapping(value = "/system/p0001/searchMod.do", method = { RequestMethod.GET, RequestMethod.POST })
-	public ModelAndView searchMod(@RequestParam(value="p_mod_id", required=false) String p_id, HttpServletRequest request, HttpServletResponse response) throws Exception {
-		request.setCharacterEncoding("utf-8");
-		Map<String, Object> searchMap = new HashMap<String, Object>();
-		searchMap.put("p_id", p_id);
-		
-		List list = p0001Service.searchList(searchMap);
-		if(!list.isEmpty()) {
-			p0001VO = (P0001VO)list.get(0);
-		}
-		
-		ModelAndView main = new ModelAndView("system/p0001_mod");
-		main.addObject("p0001VO", p0001VO);
-		main.addObject("command", "modSearch");
-		return main;
-	}
-	
-	@Override
-	@RequestMapping(value = "/system/p0001/searchInsert.do", method = { RequestMethod.GET, RequestMethod.POST })
-	public ModelAndView searchInsert(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		request.setCharacterEncoding("utf-8");
-		
-		ModelAndView main = new ModelAndView("system/p0001_mod");
-		main.addObject("command", "addSearch");
-		return main;
-	}
-
-	@Override
-	@RequestMapping(value = "/system/p0001/updateMember.do", method = { RequestMethod.GET, RequestMethod.POST })
 	@ResponseBody
-	public ResponseEntity updateMember(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public Map searchList(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("utf-8");
-		Map<String, Object> dataMap = new HashMap<String, Object>();
+		Map<String, Object> searchMap = new HashMap<String, Object>(); // 검색조건
+		Map<String, Object> resultMap = new HashMap<String, Object>(); // 조회결과
+		
+		// 검색조건설정
+		searchMap.put("p_id", request.getParameter("p_id"));
+		
+		//데이터 조회
+		List<P0001VO> data = p0001Service.searchList(searchMap);
+        resultMap.put("Data", data);
+        
+        return resultMap;
+	}
+	
+	@Override
+	@RequestMapping(value = "/system/p0001/insertData.do", method = { RequestMethod.GET, RequestMethod.POST })
+	@ResponseBody
+	public Map saveData(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		request.setCharacterEncoding("utf-8");
+		Map<String, String[]> dataMap = new HashMap<String, String[]>(); // 저장할Daa
+		Map<String, Object> resultMap = new HashMap<String, Object>(); // 처리결과
+		
+		// 저장 Data 추출하기
 		Enumeration enu = request.getParameterNames();
 		while (enu.hasMoreElements()) {
 			String name = (String) enu.nextElement();
-			String value = request.getParameter(name);
-			dataMap.put(name, value);
+			String[] values = request.getParameterValues(name);
+			dataMap.put(name, values);
 		}
-
-		String message;
-		ResponseEntity resEnt = null;
-		HttpHeaders responseHeaders = new HttpHeaders(); // ������� �� ���
-		responseHeaders.add("Content-Type", "text/html; charset=utf-8");		
+		
+		Map<String, String> result = new HashMap<String, String>();
 		try {
-			p0001Service.updateMember(dataMap);
-			
-			RequestDispatcher dispatch = request.getRequestDispatcher("/system/p0001/searchList.do");
-			dispatch.forward(request, response);
-		} catch (Exception e) {
-			message = " <script>";
-			message += " alert('������ �߻��߽��ϴ�. �ٽ� �õ��� �ּ���');";
-			message += " location.href='" + request.getContextPath() + "/system/p0001/searchInit.do'; ";
-			message += " </script>";
-			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.INTERNAL_SERVER_ERROR);
+			p0001Service.saveData(dataMap);	
+			result.put("Code","0");
+			result.put("Message","저장되었습니다");
+		}catch(Exception e) {
+			result.put("Code","-1");
+			result.put("Message","저장에 실패하였습니다");
 			e.printStackTrace();
-		}		
-		return resEnt;
+		}
+		
+		resultMap.put("Result", result);         
+        return resultMap;
 	}
-	
-	@Override
-	@RequestMapping(value = "/system/p0001/insertMember.do", method = { RequestMethod.GET, RequestMethod.POST })
-	@ResponseBody
-	public ResponseEntity insertMember(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		request.setCharacterEncoding("utf-8");
-		Map<String, Object> dataMap = new HashMap<String, Object>();
-		Enumeration enu = request.getParameterNames();
-		while (enu.hasMoreElements()) {
-			String name = (String) enu.nextElement();
-			String value = request.getParameter(name);
-			dataMap.put(name, value);
-		}
-
-		String message;
-		ResponseEntity resEnt = null;
-		HttpHeaders responseHeaders = new HttpHeaders(); // ������� �� ���
-		responseHeaders.add("Content-Type", "text/html; charset=utf-8");		
-		try {
-			p0001Service.insertMember(dataMap);
-			
-			RequestDispatcher dispatch = request.getRequestDispatcher("/system/p0001/searchList.do");
-			dispatch.forward(request, response);
-		} catch (Exception e) {
-			message = " <script>";
-			message += " alert('������ �߻��߽��ϴ�. �ٽ� �õ��� �ּ���');";
-			message += " location.href='" + request.getContextPath() + "/system/p0001/searchInit.do'; ";
-			message += " </script>";
-			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.INTERNAL_SERVER_ERROR);
-			e.printStackTrace();
-		}		
-		return resEnt;
-	}	
 	
 	@RequestMapping(value = "/common/ajaxTest", produces="application/json", method = { RequestMethod.GET, RequestMethod.POST })
 	@ResponseBody
@@ -219,4 +160,5 @@ public class P0001ControllerImpl implements P0001Controller {
 		}
 		return viewName;
 	}
+
 }

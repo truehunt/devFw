@@ -27,30 +27,25 @@
 		</where>
 	</select>
 
-	<select id="searchMod" resultMap="p0001Result01" parameterType="java.util.Map"> 
-      <![CDATA[
-       select cust_id, cust_name, cust_address, cust_state, cust_zip, cust_country, cust_contact, cust_email
-         from   customers
-      ]]>
-		<where>
-			<if test=" p_id != ''  and  p_id != null">
-						cust_id = #{p_id}
-			</if>
-		</where>
-	</select>
+	<update id="updateData" parameterType="java.util.Map">
+		update customers
+		set  cust_name = #{cust_name,jdbcType=VARCHAR}
+		   , cust_address = #{cust_address,jdbcType=VARCHAR}
+		   , cust_state = #{cust_state,jdbcType=VARCHAR}
+		   , cust_zip = #{cust_zip,jdbcType=VARCHAR}
+		   , cust_country = #{cust_country,jdbcType=VARCHAR}
+		   , cust_contact = #{cust_contact,jdbcType=VARCHAR}
+		   , cust_email = #{cust_email,jdbcType=VARCHAR}
+		where cust_id = #{cust_id, jdbcType=VARCHAR}
+	</update>	
 	
-	<update id="updateMember" parameterType="java.util.Map">
-		update t_member
-		set  pwd = #{pwd}
-		   , name = #{name}
-		   , email = #{email}
-		   , joinDate = #{joinDate}
-		   , num = #{num, jdbcType=NUMERIC}
-		where id = #{id}
-	</update>
-	
-	<insert id="insertMember" parameterType="java.util.Map">
-		insert into t_member(id, pwd, name, email) values(#{id}, #{pwd}, #{name}, #{email})
+	<insert id="insertData" parameterType="java.util.Map">
+		insert into customers(cust_id, cust_name, cust_address, cust_state, cust_zip, cust_country, cust_contact, cust_email) values(#{cust_id, ,jdbcType=VARCHAR}, #{cust_name, ,jdbcType=VARCHAR}, #{cust_address,jdbcType=VARCHAR}, #{cust_state,jdbcType=VARCHAR}, #{cust_zip,jdbcType=VARCHAR}, #{cust_country,jdbcType=VARCHAR}, #{cust_contact,jdbcType=VARCHAR}, #{cust_email,jdbcType=VARCHAR})
 	</insert>	
+	
+	<delete id="deleteData" parameterType="java.util.Map">
+		delete customers
+		where cust_id = #{cust_id}
+	</delete>	
 
 </mapper>
