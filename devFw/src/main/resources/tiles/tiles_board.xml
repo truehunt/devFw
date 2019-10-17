@@ -22,10 +22,15 @@
 	  	<put-attribute name="header"    	value="/WEB-INF/views/common/header.jsp" />
 	  	<put-attribute name="footer"    	value="/WEB-INF/views/common/footer.jsp" />
 	  	<put-attribute name="content"   	value="" />
-	  	<put-attribute name="menu"    	value="/WEB-INF/views/common/menu.jsp" />
+	  	<put-attribute name="menu"    	value="" />
 	</definition>
 	
-	<!-- 
+	<definition name="/*/*/*.do" extends="layout">
+	  	<put-attribute name="content"   value="/WEB-INF/views/{1}/{2}/{3}.jsp" />
+	  	<put-attribute name="menu"   value="/WEB-INF/views/{1}/{2}/menu.jsp" />
+	</definition>
+	
+		<!-- 
 	<definition name="system/*/*.do" extends="layouts-tiles">
 	  	<put-attribute name="content"   value="/WEB-INF/views/system/{1}/{2}.jsp" />
 	</definition>
@@ -35,9 +40,5 @@
 	  	<put-attribute name="content"   value="/WEB-INF/views/system/p0001/init.jsp" />
 	</definition>
 	 -->
-	 
-	<definition name="/*/*/*.do" extends="layout">
-	  	<put-attribute name="content"   value="/WEB-INF/views/{1}/{2}/{3}.jsp" />
-	</definition>
 
 </tiles-definitions>
