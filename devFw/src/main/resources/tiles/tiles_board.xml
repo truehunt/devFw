@@ -27,7 +27,7 @@
 	
 	<definition name="/*/*/*.do" extends="layout">
 	  	<put-attribute name="content"   value="/WEB-INF/views/{1}/{2}/{3}.jsp" />
-	  	<put-attribute name="menu"   value="/WEB-INF/views/{1}/{2}/menu.jsp" />
+	  	<put-attribute name="menu"   value="/WEB-INF/views/menu.jsp" />
 	</definition>
 	
 		<!-- 
