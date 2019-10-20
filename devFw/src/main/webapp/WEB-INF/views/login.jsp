@@ -1,6 +1,8 @@
 <%@ page contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    <%@ taglib prefix="s" uri="http://www.springframework.org/tags"%>
+    <c:set var="contextPath"  value="${pageContext.request.contextPath}" />	
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,62 +13,67 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>인사잘하조 HR SYSTEM</title>
+    <title><s:message code="common.pageTitle"/></title>
 
-    <!-- Bootstrap core CSS-->
-    <link href="resources/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <link href="${pageContext.request.contextPath}/resources/css/sb-admin/bootstrap.min.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/resources/css/sb-admin/metisMenu.min.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/resources/css/sb-admin/sb-admin-2.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/resources/css/sb-admin/font-awesome.min.css" rel="stylesheet">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
 
-    <!-- Custom fonts for this template-->
-    <link href="resources/assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <script src="${pageContext.request.contextPath}/resources/js/jquery-2.2.3.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/css/sb-admin/bootstrap.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/css/sb-admin/metisMenu.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/css/sb-admin/sb-admin-2.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/js/project9.js"></script>   
+<script>
+function fn_formSubmit(){
+	if ( ! chkInputValue("#userid", "<s:message code="common.id"/>")) return false;
+	if ( ! chkInputValue("#userpw", "<s:message code="common.password"/>")) return false;
+	
+	$("#form1").submit();
+}
+</script>
 
-    <!-- Custom styles for this template-->
-    <link href="resources/assets/css/sb-admin.css" rel="stylesheet">
+</head>
 
-  </head>
-
-  <body class="bg-dark">
+<body>
 
     <div class="container">
-      <div class="card card-login mx-auto mt-5">
-        <div class="card-header">Login</div>
-        <div class="card-body">
-          <form>
-            <div class="form-group">
-              <div class="form-label-group">
-                <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required="required" autofocus="autofocus">
-                <label for="inputEmail">사번</label>
-              </div>
+        <div class="row">
+            <div class="col-md-4 col-md-offset-4">
+                <div class="login-panel panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">로그인하세요</h3>
+                    </div>
+                    <div class="panel-body">
+                        <form role="form" action="memberLoginChk" method="post" id="form1" name="form1">
+                            <fieldset>
+                                <div class="form-group">
+                                    <input class="form-control" placeholder="사번" name="userid" id="userid" type="email" autofocus value="<c:out value="${userid}"/>">
+                                </div>
+                                <div class="form-group">
+                                    <input class="form-control" placeholder="비밀번호" name="userpw" id="userpw" type="password" value="" onkeydown="if(event.keyCode == 13) { fn_formSubmit();}">
+                                </div>
+                                <div class="checkbox">
+                                    <label>
+                                        <input name="remember" type="checkbox" value="Y"  <c:if test='${userid != null && userid != ""}'>checked</c:if>>기억합니다
+                                    </label>
+                                </div>
+                                <!-- Change this to a button or input when using this as a form -->
+                                <a href="#" class="btn btn-lg btn-success btn-block" onclick="fn_formSubmit()">Login</a>
+                            </fieldset>
+                        </form>
+                    </div>
+                </div>
             </div>
-            <div class="form-group">
-              <div class="form-label-group">
-                <input type="password" id="inputPassword" class="form-control" placeholder="Password" required="required">
-                <label for="inputPassword">비밀번호</label>
-              </div>
-            </div>
-            <div class="form-group">
-              <div class="checkbox">
-                <label>
-                  <input type="checkbox" value="remember-me">
-                  	비밀번호 기억
-                </label>
-              </div>
-            </div>
-            <a class="btn btn-primary btn-block" href="index.html">로그인</a>
-          </form>
-          <div class="text-center">
-            <a class="d-block small" href="forgot-password.html">비밀번호를 잊어버리셨습니까?</a>
-          </div>
         </div>
-      </div>
     </div>
-
-    <!-- Bootstrap core JavaScript-->
-    <script src="resources/assets/vendor/jquery/jquery.min.js"></script>
-    <script src="resources/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-    <!-- Core plugin JavaScript-->
-    <script src="resources/assets/vendor/jquery-easing/jquery.easing.min.js"></script>
-
-  </body>
+</body>
 
 </html>

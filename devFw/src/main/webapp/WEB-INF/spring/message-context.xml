@@ -9,6 +9,7 @@
       <property name="basenames">
          <list>                
             <value>classpath:locale/messages</value>
+            <value>classpath:/message/message</value>
          </list>
       </property>
       <!-- 파일의 기본 인코딩을 지정합니다. -->

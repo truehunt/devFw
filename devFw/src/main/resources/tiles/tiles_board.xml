@@ -6,8 +6,6 @@
 
 	<!-- 로그인 화면 레이아웃 -->
 	<definition name=".login"  template="/WEB-INF/views/common/loginlayout.jsp">
-      <put-attribute name="css"			value="/WEB-INF/views/common/css.jsp" />
-		<put-attribute name="js"			value="/WEB-INF/views/common/js.jsp" />
 	  	<put-attribute name="content"   	value="" />
    </definition>
    
@@ -18,11 +16,10 @@
 	<!-- 로그인 화면 외 레이아웃 -->
 	<definition name="layout" template="/WEB-INF/views/common/layout.jsp">
 		<put-attribute name="css"			value="/WEB-INF/views/common/css.jsp" />
-		<put-attribute name="js"			value="/WEB-INF/views/common/js.jsp" />
 	  	<put-attribute name="header"    	value="/WEB-INF/views/common/header.jsp" />
-	  	<put-attribute name="footer"    	value="/WEB-INF/views/common/footer.jsp" />
 	  	<put-attribute name="content"   	value="" />
 	  	<put-attribute name="menu"    	value="" />
+	  	<put-attribute name="js"			value="/WEB-INF/views/common/js.jsp" />
 	</definition>
 	
 	<definition name="/*/*/*.do" extends="layout">

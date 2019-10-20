@@ -13,9 +13,5 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 public interface P0001Controller {
-	public ModelAndView searchInit(HttpServletRequest request, HttpServletResponse response) throws Exception;
 	public ModelAndView login(HttpServletRequest request, HttpServletResponse response) throws Exception;
-	public ModelAndView ibSheet(HttpServletRequest request, HttpServletResponse response) throws Exception;
-	public Map saveData(HttpServletRequest request, HttpServletResponse response) throws Exception;
-	public Map searchList(HttpServletRequest request, HttpServletResponse response) throws Exception;
 }

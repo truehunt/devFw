@@ -4,7 +4,7 @@
 
 <configuration>
 	<typeAliases>
-		<typeAlias type="hr.system.p0001.vo.P0001VO"  alias="p0001VO" />
+		<typeAlias type="hr.elect.p0001.vo.P0001VO"  alias="p0001VO" />
 	
 	</typeAliases> 
 </configuration>

@@ -29,8 +29,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import hr.system.p0001.service.P0001Service;
-import hr.system.p0001.vo.P0001VO;
+import hr.elect.p0001.service.P0001Service;
+import hr.elect.p0001.vo.P0001VO;
 
 @Controller("p0001Controller")
 public class P0001ControllerImpl implements P0001Controller {
@@ -49,77 +49,6 @@ public class P0001ControllerImpl implements P0001Controller {
 		//ModelAndView main = new ModelAndView("hr/p0001_init");
 		ModelAndView main = new ModelAndView(viewName);
 		return main;
-	}
-	
-	@Override
-	@RequestMapping(value = "/system/p0001/init.do", method = { RequestMethod.GET, RequestMethod.POST })
-	public ModelAndView searchInit(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		String viewName = getViewName(request);
-		viewName = "/system/p0001/init.do";
-		request.setCharacterEncoding("utf-8");
-		//ModelAndView main = new ModelAndView("hr/p0001_init");
-		ModelAndView main = new ModelAndView(viewName);
-		return main;
-	}
-	
-	@Override
-	@RequestMapping(value = "/system/p0001/ibsheet.do", method = { RequestMethod.GET, RequestMethod.POST })
-	public ModelAndView ibSheet(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		String viewName = getViewName(request);
-		viewName = "/system/p0001/ibsheet_basic.do";
-		request.setCharacterEncoding("utf-8");
-		//ModelAndView main = new ModelAndView("hr/p0001_init");
-		ModelAndView main = new ModelAndView(viewName);
-		return main;
-	}
-	
-	@Override
-	@RequestMapping(value = "/system/p0001/searchList.do", method = { RequestMethod.GET, RequestMethod.POST })
-	@ResponseBody
-	public Map searchList(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		request.setCharacterEncoding("utf-8");
-		Map<String, Object> searchMap = new HashMap<String, Object>(); // 검색조건
-		Map<String, Object> resultMap = new HashMap<String, Object>(); // 조회결과
-		
-		// 검색조건설정
-		searchMap.put("p_id", request.getParameter("p_id"));
-		
-		//데이터 조회
-		List<P0001VO> data = p0001Service.searchList(searchMap);
-        resultMap.put("Data", data);
-        
-        return resultMap;
-	}
-	
-	@Override
-	@RequestMapping(value = "/system/p0001/insertData.do", method = { RequestMethod.GET, RequestMethod.POST })
-	@ResponseBody
-	public Map saveData(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		request.setCharacterEncoding("utf-8");
-		Map<String, String[]> dataMap = new HashMap<String, String[]>(); // 저장할Daa
-		Map<String, Object> resultMap = new HashMap<String, Object>(); // 처리결과
-		
-		// 저장 Data 추출하기
-		Enumeration enu = request.getParameterNames();
-		while (enu.hasMoreElements()) {
-			String name = (String) enu.nextElement();
-			String[] values = request.getParameterValues(name);
-			dataMap.put(name, values);
-		}
-		
-		Map<String, String> result = new HashMap<String, String>();
-		try {
-			p0001Service.saveData(dataMap);	
-			result.put("Code","0");
-			result.put("Message","저장되었습니다");
-		}catch(Exception e) {
-			result.put("Code","-1");
-			result.put("Message","저장에 실패하였습니다");
-			e.printStackTrace();
-		}
-		
-		resultMap.put("Result", result);         
-        return resultMap;
 	}
 	
 	@RequestMapping(value = "/common/ajaxTest", produces="application/json", method = { RequestMethod.GET, RequestMethod.POST })
