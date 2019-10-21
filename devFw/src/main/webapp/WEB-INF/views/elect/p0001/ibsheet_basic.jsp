@@ -53,7 +53,7 @@
 		switch(sAction) {
 			case "search": //조회
 			    var param = FormQueryStringEnc(document.frm);
-				mySheet.DoSearch("${contextPath}/system/p0001/searchList.do", param);
+				mySheet.DoSearch("${contextPath}/elect/p0001/searchList.do", param);
 				//mySheet.DoSearch("transaction_data2.json");
 				break;
 			case "reload": //초기화
@@ -62,7 +62,7 @@
 			case "save": // 저장
 				//var tempStr = mySheet.GetSaveString();
 				//alert("서버로 전달되는 문자열 확인 :"+tempStr);
-				mySheet.DoSave("${contextPath}/system/p0001/insertData.do");
+				mySheet.DoSave("${contextPath}/elect/p0001/insertData.do");
 				break;			
 			case "insert": //신규행 추가
 				var row = mySheet.DataInsert();
