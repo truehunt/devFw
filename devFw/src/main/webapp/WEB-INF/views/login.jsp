@@ -33,8 +33,8 @@
 	<script src="${pageContext.request.contextPath}/resources/js/project9.js"></script>   
 <script>
 function fn_formSubmit(){
-	if ( ! chkInputValue("#userid", "<s:message code="common.id"/>")) return false;
-	if ( ! chkInputValue("#userpw", "<s:message code="common.password"/>")) return false;
+	if ( ! chkInputValue("#PK_SAWON_CODE", "<s:message code="common.id"/>")) return false;
+	if ( ! chkInputValue("#SAWON_PASSWORD", "<s:message code="common.password"/>")) return false;
 	
 	$("#form1").submit();
 }
@@ -55,14 +55,14 @@ function fn_formSubmit(){
                         <form role="form" action="memberLoginChk" method="post" id="form1" name="form1">
                             <fieldset>
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="사번" name="userid" id="userid" type="email" autofocus value="<c:out value="${userid}"/>">
+                                    <input class="form-control" placeholder="사번" name="PK_SAWON_CODE" id="PK_SAWON_CODE" type="text" autofocus value="<c:out value="${PK_SAWON_CODE}"/>">
                                 </div>
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="비밀번호" name="userpw" id="userpw" type="password" value="" onkeydown="if(event.keyCode == 13) { fn_formSubmit();}">
+                                    <input class="form-control" placeholder="비밀번호" name="SAWON_PASSWORD" id="SAWON_PASSWORD" type="password" value="" onkeydown="if(event.keyCode == 13) { fn_formSubmit();}">
                                 </div>
                                 <div class="checkbox">
                                     <label>
-                                        <input name="remember" type="checkbox" value="Y"  <c:if test='${userid != null && userid != ""}'>checked</c:if>>기억합니다
+                                        <input name="remember" type="checkbox" value="Y"  <c:if test='${PK_SAWON_CODE != null && PK_SAWON_CODE != ""}'>checked</c:if>>기억합니다
                                     </label>
                                 </div>
                                 <!-- Change this to a button or input when using this as a form -->

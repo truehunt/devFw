@@ -25,7 +25,8 @@
 	                                	}
 	                                </script>                            <!-- /input-group -->
                         </li>
-                        <!-- 관리자메뉴  <c:if test='${sessionScope.userrole == "A"}'> </c:if> 써서 뷰단 각각 보이게 수정-->
+                        <!-- 관리자메뉴 --> 
+                        <c:if test='${sessionScope.SAWON_VIEW_PERMISSION == "A"}'>  
 	                        <li>
 	                            <a href="#"> <s:message code="memu.admin"/></a>
 	                        </li>
@@ -92,7 +93,7 @@
                              <li>
                                  <a href="adSignDocTypeList"><i class="fa fa-sitemap fa-fw"></i> 결재문서양식</a>
                              </li>
-	                	
+	                	</c:if>
                         <!-- 일반 사원 단 조회 가능메뉴들 -->
                         <li>
                             <a href="#"><i class="fa fa-edit fa-fw"></i> 인사관리<span class="fa arrow"></span></a>
