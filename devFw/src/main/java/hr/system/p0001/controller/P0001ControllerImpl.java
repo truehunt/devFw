@@ -47,7 +47,11 @@ public class P0001ControllerImpl implements P0001Controller {
 	
 	@Override
 	@RequestMapping(value = "login.do", method = { RequestMethod.GET, RequestMethod.POST })
-	public ModelAndView login(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public ModelAndView login(HttpServletRequest request, HttpServletResponse response, ModelMap modelMap) throws Exception {
+		
+		String    userid = get_cookie("sid", request);    
+        modelMap.addAttribute("PK_SAWON_CODE", userid);
+		
 		String viewName = getViewName(request);
 		viewName = "/login/*";
 		request.setCharacterEncoding("utf-8");
@@ -82,7 +86,7 @@ public class P0001ControllerImpl implements P0001Controller {
             set_cookie("sid", "", response);       
         }
         
-        return "redirect:/elect/p0001/init.do";
+        return "redirect:/index";
     }
     
     /**

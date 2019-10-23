@@ -93,6 +93,9 @@
                              <li>
                                  <a href="adSignDocTypeList"><i class="fa fa-sitemap fa-fw"></i> 결재문서양식</a>
                              </li>
+                             <li>
+                                 <a href="adCodeList"><i class="fa fa-sitemap fa-fw"></i> 공통코드관리</a>
+                             </li>
 	                	</c:if>
                         <!-- 일반 사원 단 조회 가능메뉴들 -->
                         <li>
@@ -157,15 +160,15 @@
                                 </li>
 	                        </ul>                             
                         </li>
+                        <!-- 일정관리 -->             
+                        <li>
+                            <a href="/devFw/schList"><i class="fa fa-calendar fa-fw"></i> 일정관리</a>
+                        </li>
                         <!-- 기존 있던 소스 -->   
                         <!-- 게시판 -->
                         <li>
                             <a href="boardList"><i class="fa fa-files-o fa-fw"></i> <s:message code="board.boardName"/></a>
                         </li>        
-                        <!-- 일정관리 -->             
-                        <li>
-                            <a href="schList"><i class="fa fa-calendar fa-fw"></i> 일정관리</a>
-                        </li>
                         <!-- 메일 -->                        
                         <li>
                             <a href="#"><i class="fa fa-envelope-o fa-fw"></i> 메일<span class="fa arrow"></span></a>

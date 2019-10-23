@@ -25,7 +25,8 @@
 	<!-- 인터셉터 -->
 	<mvc:interceptors>
 	    <mvc:interceptor>
-	       <mvc:mapping path="/*/*/*.do"/>  
+	       <mvc:mapping path="/*/*/*.do"/> 
+	       <mvc:mapping path="/index"/> 
 	       <mvc:exclude-mapping path="/login.do"/> 
 	       <mvc:exclude-mapping path="/memberLoginChk"/> 
 	       <mvc:exclude-mapping path="/js/**"/> 

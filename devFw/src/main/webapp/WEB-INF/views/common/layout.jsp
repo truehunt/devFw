@@ -9,10 +9,8 @@
   <div id="wrapper">
 	<tiles:insertAttribute name="header" />
 	
-	<div id="side-menu">
       <!-- Sidebar -->
       <tiles:insertAttribute name="menu" />
-      </div>
       
       	<div id="page-wrapper">
 		<tiles:insertAttribute name="content" />
